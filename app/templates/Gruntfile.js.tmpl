@@ -180,11 +180,11 @@ module.exports = function( grunt ) {
 
 	// Default task.
 	<% if ('Sass' === css_type) { %>
-	grunt.registerTask( 'default', ['jshint', 'concat', 'uglify', 'compass', 'cssmin', 'imagemin' 'version'] );
+	grunt.registerTask( 'default', ['jshint', 'concat', 'uglify', 'compass', 'cssmin', 'imagemin', 'version'] );
 	<% } else if ('LESS' === css_type) { %>
-	grunt.registerTask( 'default', ['jshint', 'concat', 'uglify', 'less', 'cssmin', 'imagemin' 'version'] );
+	grunt.registerTask( 'default', ['jshint', 'concat', 'uglify', 'less', 'cssmin', 'imagemin', 'version'] );
 	<% } else { %>
-	grunt.registerTask( 'default', ['jshint', 'concat', 'uglify', 'cssmin', 'imagemin' 'version'] );
+	grunt.registerTask( 'default', ['jshint', 'concat', 'uglify', 'cssmin', 'imagemin', 'version'] );
 	<% } %>
 
 	grunt.registerTask( 'dev', ['watch'] );
