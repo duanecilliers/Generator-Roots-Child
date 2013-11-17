@@ -113,6 +113,16 @@ module.exports = function( grunt ) {
 				ext: '.min.css'
 			}
 		},
+		imagemin: {
+			dist: {
+				files: [{
+					expand: true,
+					cwd: 'assets/img',
+					src: '{,*/}*.{png,jpg,jpeg}',
+					dest: 'assets/img/dist'
+				}]
+			}
+		},
 		version: {
 			options: {
 				file: 'lib/scripts.php',
@@ -170,11 +180,11 @@ module.exports = function( grunt ) {
 
 	// Default task.
 	<% if ('Sass' === css_type) { %>
-	grunt.registerTask( 'default', ['jshint', 'concat', 'uglify', 'compass', 'cssmin', 'version'] );
+	grunt.registerTask( 'default', ['jshint', 'concat', 'uglify', 'compass', 'cssmin', 'imagemin' 'version'] );
 	<% } else if ('LESS' === css_type) { %>
-	grunt.registerTask( 'default', ['jshint', 'concat', 'uglify', 'less', 'cssmin', 'version'] );
+	grunt.registerTask( 'default', ['jshint', 'concat', 'uglify', 'less', 'cssmin', 'imagemin' 'version'] );
 	<% } else { %>
-	grunt.registerTask( 'default', ['jshint', 'concat', 'uglify', 'cssmin', 'version'] );
+	grunt.registerTask( 'default', ['jshint', 'concat', 'uglify', 'cssmin', 'imagemin' 'version'] );
 	<% } %>
 
 	grunt.registerTask( 'dev', ['watch'] );
