@@ -17,8 +17,9 @@ function <%= prefix %>_scripts() {
 
 	$postfix = ( defined( 'SCRIPT_DEBUG' ) && true === SCRIPT_DEBUG ) ? '' : '.min';
 
-	// dequeue roots_main & enqueue child theme script
+	<% if (css_type != 'None') { %>
 	wp_dequeue_script('roots_main');
+	<% } %>
 	wp_enqueue_style('<%= prefix %>_main', get_stylesheet_directory_uri() . "/assets/css/main{$postfix}.css", false, '9dbd7d094ab56a14e3b2a984b20ea357');
 
 	// jQuery is loaded using the same method from HTML5 Boilerplate:
@@ -38,7 +39,7 @@ function <%= prefix %>_scripts() {
 	wp_dequeue_script('roots_scripts');
 	wp_deregister_script('roots_scripts');
 
-	wp_register_script('<%= prefix %>_scripts', get_stylesheet_directory_uri() . "/assets/js/scripts{$postfix}.js", array('jquery'), 'be373268f9b8ecda7c3a45154676e637', true);
+	wp_register_script('<%= prefix %>_scripts', get_stylesheet_directory_uri() . "/assets/js/main{$postfix}.js", array('jquery'), 'be373268f9b8ecda7c3a45154676e637', true);
 
 	// enqueue modernizr from roots parent theme if child theme supports it. Enable in lib/config.php
 	if ( get_theme_support('modernizr') )
@@ -63,7 +64,7 @@ function <%= prefix %>_jquery_local_fallback($src, $handle = null) {
 
 	return $src;
 }
-add_action('wp_head', 'roots_jquery_local_fallback');
+add_action('wp_head', '<%= prefix %>_jquery_local_fallback');
 
 // Set Google Analytics ID in config.php
 function <%= prefix %>_google_analytics() { ?>

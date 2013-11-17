@@ -1,8 +1,8 @@
 'use strict';
+require('date-utils');
 var fs = require('fs');
 var util = require('util');
 var path = require('path');
-var slugify = require('slugify');
 var yeoman = require('yeoman-generator');
 
 
@@ -37,8 +37,11 @@ RootsChildGenerator.prototype.askFor = function askFor() {
 				type: 'confirm'
 			}], function (i) {
 				if (i.confirm) {
+					me.date = Date.today();
+					me.date_formatted = me.date.toFormat('YYYY-MM-DD HH:MI');
+					me.year = me.date.toFormat('YYYY');
 					me.title = input.title;
-					me.slug = slugify(me.title).toLowerCase();
+					me.js_safe_title = me.title.split(' ').join('');
 					me.theme_name = path.basename(process.cwd());
 					me.prefix = input.prefix;
 					me.prefix_caps = me.prefix.toUpperCase();
@@ -48,7 +51,6 @@ RootsChildGenerator.prototype.askFor = function askFor() {
 					me.author_url = input.author_url;
 					me.author_email = input.author_email;
 					me.css_type = input.css_type;
-					me.bootstrap = input.bootstrap;
 					done();
 				} else {
 					console.log();
@@ -61,20 +63,45 @@ RootsChildGenerator.prototype.askFor = function askFor() {
 };
 
 RootsChildGenerator.prototype.projectdirs = function projectdirs() {
-	var dirs  = ['assets', 'assets/css', 'assets/img', 'assets/js', 'lib', 'templates', 'languages'];
+	var dirs  = ['assets', 'assets/css', 'assets/img', 'assets/js', 'assets/js/vendor', 'lib', 'templates', 'languages'];
 	for (var i = 0; i < dirs.length; i++) {
 		this.mkdir(dirs[i]);
+	}
+	switch (this.css_type) {
+		case 'Sass':
+			this.mkdir('assets/css/sass');
+			break;
+		case 'LESS':
+			this.mkdir('assets/css/less');
+			break;
 	}
 };
 
 RootsChildGenerator.prototype.projectfiles = function projectfiles() {
 	this.copy('editorconfig', '.editorconfig');
 	this.copy('jshintrc', '.jshintrc');
+	this.copy('bowerrc', '.bowerrc');
+	this.copy('gruntjshintrc', '.gruntjshintrc');
+	this.copy('_screenshot.png', 'screenshot.png');
+	this.copy('_index.php', 'index.php');
 	this.template('package.json.tmpl', 'package.json');
 	this.template('bower.json.tmpl', 'bower.json');
 	this.template('humans.txt.tmpl', 'humans.txt');
+	this.template('style.css.tmpl', 'style.css');
+	this.template('main.js.tmpl', 'assets/js/_main.js');
+	this.template('theme.pot.tmpl', 'languages/' + this.theme_name + '.pot');
 	this.template('functions.php.tmpl', 'functions.php');
 	this.template('config.php.tmpl', 'lib/config.php');
-	// this.copy('_Gruntfile.js', 'Gruntfile.js');
-	// this.copy('bowerrc', '.bowerrc');
+	this.template('scripts.php.tmpl', 'lib/scripts.php');
+	this.template('Gruntfile.js.tmpl', 'Gruntfile.js');
+	switch (this.css_type) {
+		case 'Sass':
+			this.template('main.css.tmpl', 'assets/css/sass/main.scss');
+			break;
+		case 'LESS':
+			this.template('main.css.tmpl', 'assets/css/less/main.less');
+			break;
+		default:
+			this.template('main.css.tmpl', 'assets/css/main.css');
+	}
 };

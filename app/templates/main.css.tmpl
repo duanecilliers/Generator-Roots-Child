@@ -1,0 +1,14 @@
+/**
+ * <%= title %>
+ * <%= theme_url %>
+ *
+ * Copyright (c) <%= year %> <%= author_name %>
+ * Licensed under the GPLv2+ license.
+ */
+<% if (css_type == 'Sass') { %>
+@import "../../../bower_components/sass-bootstrap/lib/bootstrap";<% } %><% if (css_type == 'LESS') { %>
+@import "../../../bower_components/bootstrap/lib/bootstrap";
+<% } %>
+/**
+ * Your styles here
+ */

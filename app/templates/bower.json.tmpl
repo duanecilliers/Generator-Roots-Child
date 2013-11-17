@@ -1,6 +1,9 @@
 {
-  "name": "<%= theme_name %>",
-  "version": "0.1.0",
-  "dependencies": {}
+	"name": "<%= theme_name %>",
+	"version": "0.1.0",
+	"dependencies": {<% if (css_type == 'Sass') { %>
+		"sass-bootstrap": "~3.0.0"<% } else { %>
+		"bootstrap": "~3.0.0"<% } %>
+	}
 }
 

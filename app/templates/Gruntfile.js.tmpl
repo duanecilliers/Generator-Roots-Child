@@ -1,0 +1,183 @@
+module.exports = function( grunt ) {
+	'use strict';
+
+	// Load all grunt tasks
+	require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
+
+	// Project configuration
+	grunt.initConfig( {
+		pkg:    grunt.file.readJSON( 'package.json' ),
+		concat: {
+			options: {
+				stripBanners: true,
+				banner: '/*! <%= pkg.title %> - v<%= pkg.version %> - <%= date_formatted %>\n' +
+					' * <%= pkg.name %>\n' +
+					' * Copyright (c) <%= year %>;' +
+					' * Licensed GPLv2+' +
+					' */\n'
+			},
+			scripts: {
+				src: [
+					'assets/js/_main.js'
+				],
+				dest: 'assets/js/main.js'
+			}
+		},
+		jshint: {
+			browser: {
+				all: [
+					'assets/js/**/*.js',
+					'assets/js/test/**/*.js'
+				],
+				options: {
+					jshintrc: '.jshintrc'
+				}
+			},
+			grunt: {
+				all: [
+					'Gruntfile.js'
+				],
+				options: {
+					jshintrc: '.gruntjshintrc'
+				}
+			}
+		},
+		uglify: {
+			all: {
+				files: {
+					'assets/js/main.min.js': ['assets/js/main.js']
+				},
+				options: {
+					banner: '/*! <%= pkg.title %> - v<%= pkg.version %> - <%= date_formatted %>\n' +
+						' * <%= pkg.name %>\n' +
+						' * Copyright (c) <%= year %>;' +
+						' * Licensed GPLv2+' +
+						' */\n',
+					mangle: {
+						except: ['jQuery']
+					}
+				}
+			}
+		},
+		test:   {
+			files: ['assets/js/test/**/*.js']
+		},
+		<% if ('Sass' === css_type) { %>
+		compass: {
+			options: {
+				sassDir: 'assets/css/sass',
+				cssDir: 'assets/css',
+				generatedImagesDir: 'assets/img/.tmp/generated',
+				imagesDir: 'assets/img',
+				javascriptsDir: 'assets/js',
+				fontsDir: 'assets/css/fonts',
+				importPath: 'bower_components',
+				httpImagesPath: 'assets/img',
+				httpGeneratedImagesPath: 'assets/img/generated',
+				httpFontsPath: 'css/fonts',
+				relativeAssets: false
+			},
+			dist: {
+				options: {
+					generatedImagesDir: 'assets/img/dist/generated'
+				}
+			},
+			server: {
+				options: {
+					debugInfo: true
+				}
+			}
+		},
+		<% } else if ('LESS' === css_type) { %>
+		less:   {
+			all: {
+				files: {
+					'assets/css/main.css': 'assets/css/less/main.less'
+				}
+			}
+		},
+		<% } %>
+		cssmin: {
+			options: {
+				banner: '/*! <%= pkg.title %> - v<%= pkg.version %> - <%= date_formatted %>\n' +
+					' * <%= pkg.name %>\n' +
+					' * Copyright (c) <%= year %>;' +
+					' * Licensed GPLv2+' +
+					' */\n'
+			},
+			minify: {
+				expand: true,
+				cwd: 'assets/css/',
+				src: ['main.css'],
+				dest: 'assets/css/',
+				ext: '.min.css'
+			}
+		},
+		version: {
+			options: {
+				file: 'lib/scripts.php',
+				css: 'assets/css/main.min.css',
+				cssHandle: '<%= prefix %>_main',
+				js: 'assets/js/main.min.js',
+				jsHandle: '<%= prefix %>_scripts'
+			}
+		},
+		watch:  {
+			<% if ('Sass' === css_type) { %>
+			compass: {
+				files: ['assets/css/{,*/}*.{scss,sass}'],
+				tasks: ['compass:server', 'cssmin']
+			},
+			<% } else if ('LESS' === css_type) { %>
+			less: {
+				files: ['assets/css/less/*.less'],
+				tasks: ['LESS', 'cssmin'],
+				options: {
+					debounceDelay: 500
+				}
+			},
+			<% } else { %>
+			styles: {
+				files: ['assets/css/src/*.css'],
+				tasks: ['cssmin'],
+				options: {
+					debounceDelay: 500
+				}
+			},
+			<% } %>
+			livereload: {
+				// Browser live reloading
+				// https://github.com/gruntjs/grunt-contrib-watch#live-reloading
+				options: {
+					livereload: false
+				},
+				files: [
+					'assets/css/main.min.css',
+					'assets/js/main.min.js',
+					'templates/*.php',
+					'*.php'
+				]
+			},
+			scripts: {
+				files: ['assets/js/**/*.js', 'assets/js/vendor/**/*.js'],
+				tasks: ['jshint', 'concat', 'uglify'],
+				options: {
+					debounceDelay: 500
+				}
+			}
+		}
+	} );
+
+	// Default task.
+	<% if ('Sass' === css_type) { %>
+	grunt.registerTask( 'default', ['jshint', 'concat', 'uglify', 'compass', 'cssmin', 'version'] );
+	<% } else if ('LESS' === css_type) { %>
+	grunt.registerTask( 'default', ['jshint', 'concat', 'uglify', 'less', 'cssmin', 'version'] );
+	<% } else { %>
+	grunt.registerTask( 'default', ['jshint', 'concat', 'uglify', 'cssmin', 'version'] );
+	<% } %>
+
+	grunt.registerTask( 'dev', ['watch'] );
+
+	grunt.util.linefeed = '\n';
+};
