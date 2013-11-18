@@ -155,47 +155,37 @@ module.exports = function( grunt ) {
 			}
 		},
 		watch:  {
-			<% if ('Sass' === css_type) { %>
+			options: {
+				livereload: true
+			},<% if ('Sass' === css_type) { %>
 			compass: {
 				files: ['assets/css/{,*/}*.{scss,sass}'],
 				tasks: ['compass:server', 'autoprefixer', 'cssmin']
-			},
-			<% } else if ('LESS' === css_type) { %>
+			},<% } else if ('LESS' === css_type) { %>
 			less: {
 				files: ['assets/css/less/*.less'],
 				tasks: ['LESS', 'cssmin'],
 				options: {
 					debounceDelay: 500
 				}
-			},
-			<% } else { %>
+			},<% } else { %>
 			styles: {
 				files: ['assets/css/src/*.css'],
 				tasks: ['autoprefixer', 'cssmin'],
 				options: {
 					debounceDelay: 500
 				}
-			},
-			<% } %>
-			livereload: {
-				// Browser live reloading
-				// https://github.com/gruntjs/grunt-contrib-watch#live-reloading
-				options: {
-					livereload: false
-				},
-				files: [
-					'assets/css/main.min.css',
-					'assets/js/main.min.js',
-					'templates/*.php',
-					'*.php'
-				]
-			},
+			},<% } %>
 			scripts: {
 				files: ['assets/js/**/*.js', 'assets/js/vendor/**/*.js'],
 				tasks: ['jshint', 'uglify'],
 				options: {
 					debounceDelay: 500
 				}
+			},
+			markup: {
+				files: ['**/*.php', '**/*.html'],
+				livereload: true
 			}
 		}
 	} );

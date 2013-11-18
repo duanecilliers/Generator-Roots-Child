@@ -22,7 +22,6 @@ $ npm install -g yo
 ### TODO
 
 * add deployment option with the --advanced flag. See grunt-rsync & https://github.com/mattbanks/WordPress-Starter-Theme
-* add livereload in watch task - see https://github.com/mattbanks/WordPress-Starter-Theme/blob/master/Gruntfile.js
 * use tgma to instsall required plugins - see https://github.com/mattbanks/WordPress-Starter-Theme/blob/master/lib/theme-require-plugins.php
 * test & fix compass images setup
 * add support for coffeescript
