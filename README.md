@@ -21,7 +21,10 @@ $ npm install -g yo
 
 ### TODO
 
-* Gruntfile.js
+* Overwrite activation and remove uploads dir
+* change httpGeneratedImagesPath to 'assets/img'
+* Check if WP_LOCAL_DEV is defined in lib/scripts
+* add copy task for compass images
 
 ### Yeoman Generators
 
