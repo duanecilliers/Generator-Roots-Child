@@ -202,14 +202,14 @@ module.exports = function( grunt ) {
 
 	// Default task.
 	<% if ('Sass' === css_type) { %>
-	grunt.registerTask( 'default', ['jshint', 'uglify', 'compass', 'autoprefixer', 'cssmin', 'imagemin', 'version'] );
+	grunt.registerTask( 'default', ['jshint', 'uglify', 'compass', 'autoprefixer', 'cssmin', 'version'] );
 	<% } else if ('LESS' === css_type) { %>
-	grunt.registerTask( 'default', ['jshint', 'uglify', 'less', 'autoprefixer', 'cssmin', 'imagemin', 'version'] );
+	grunt.registerTask( 'default', ['jshint', 'uglify', 'less', 'autoprefixer', 'cssmin', 'version'] );
 	<% } else { %>
-	grunt.registerTask( 'default', ['jshint', 'uglify', 'autoprefixer', 'cssmin', 'imagemin', 'version'] );
+	grunt.registerTask( 'default', ['jshint', 'uglify', 'autoprefixer', 'cssmin', 'version'] );
 	<% } %>
 
-	grunt.registerTask( 'dev', ['watch', 'imagemin'] );
+	grunt.registerTask( 'dev', ['watch'] );
 
 	grunt.util.linefeed = '\n';
 };
