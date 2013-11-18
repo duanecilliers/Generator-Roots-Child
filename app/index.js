@@ -98,6 +98,8 @@ RootsChildGenerator.prototype.projectfiles = function projectfiles() {
 	this.template('lib/config.php', 'lib/config.php');
 	this.template('lib/activation.php', 'lib/activation.php');
 	this.template('lib/scripts.php', 'lib/scripts.php');
+	this.template('lib/class-tgm-plugin-activation.php', 'lib/class-tgm-plugin-activation.php');
+	this.template('lib/theme-require-plugins.php', 'lib/theme-require-plugins.php');
 
 	this.template('Gruntfile.js', 'Gruntfile.js');
 

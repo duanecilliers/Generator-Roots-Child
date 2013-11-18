@@ -26,7 +26,6 @@ $ npm install -g yo
 * use tgma to install required plugins - see https://github.com/mattbanks/WordPress-Starter-Theme/blob/master/lib/theme-require-plugins.php
 	consider a multiple prompt for selecting suggested plugins (https://github.com/SBoudrias/Inquirer.js/issues/27)
 * test & fix compass images setup
-* add support for coffeescript
 
 ### Yeoman Generators
 

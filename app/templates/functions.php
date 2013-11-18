@@ -15,6 +15,14 @@
  // Useful global constants
 define( '<%= prefix_caps %>_VERSION', '0.1.0' );
 
+/**
+ * Require plugins
+ */
+require_once( get_stylesheet_directory() . '/lib/class-tgm-plugin-activation.php' );
+require_once( get_stylesheet_directory() . '/lib/theme-require-plugins.php' );
+
+add_action( 'tgmpa_register', 'mb_register_required_plugins' );
+
  /**
   * Set up theme defaults and register supported WordPress features.
   *
