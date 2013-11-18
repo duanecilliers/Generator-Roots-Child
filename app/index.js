@@ -63,7 +63,7 @@ RootsChildGenerator.prototype.askFor = function askFor() {
 };
 
 RootsChildGenerator.prototype.projectdirs = function projectdirs() {
-	var dirs  = ['assets', 'assets/css', 'assets/img', 'assets/img/dist', 'assets/js', 'assets/js/vendor', 'lib', 'templates', 'languages'];
+	var dirs  = ['assets', 'assets/css', 'assets/img', 'assets/img/dist', 'assets/js', 'assets/js/source', 'assets/js/vendor', 'lib', 'templates', 'languages'];
 	for (var i = 0; i < dirs.length; i++) {
 		this.mkdir(dirs[i]);
 	}
@@ -84,25 +84,31 @@ RootsChildGenerator.prototype.projectfiles = function projectfiles() {
 	this.copy('gruntjshintrc', '.gruntjshintrc');
 	this.copy('_screenshot.png', 'screenshot.png');
 	this.copy('_index.php', 'index.php');
-	this.template('package.json.tmpl', 'package.json');
-	this.template('bower.json.tmpl', 'bower.json');
-	this.template('humans.txt.tmpl', 'humans.txt');
-	this.template('style.css.tmpl', 'style.css');
-	this.template('main.js.tmpl', 'assets/js/_main.js');
-	this.template('theme.pot.tmpl', 'languages/' + this.theme_name + '.pot');
-	this.template('functions.php.tmpl', 'functions.php');
-	this.template('config.php.tmpl', 'lib/config.php');
-	this.template('activation.php.tmpl', 'lib/activation.php');
-	this.template('scripts.php.tmpl', 'lib/scripts.php');
+
+	this.template('package.json', 'package.json');
+	this.template('bower.json', 'bower.json');
+	this.template('humans.txt', 'humans.txt');
+	this.template('style.css', 'style.css');
+	this.template('theme.pot', 'languages/' + this.theme_name + '.pot');
+	this.template('functions.php', 'functions.php');
+
+	this.template('assets/main.js', 'assets/js/source/main.js');
+	this.template('assets/plugins.js', 'assets/js/source/plugins.js');
+
+	this.template('lib/config.php', 'lib/config.php');
+	this.template('lib/activation.php', 'lib/activation.php');
+	this.template('lib/scripts.php', 'lib/scripts.php');
+
 	this.template('Gruntfile.js.tmpl', 'Gruntfile.js');
+
 	switch (this.css_type) {
 		case 'Sass':
-			this.template('main.css.tmpl', 'assets/css/sass/main.scss');
+			this.template('assets/main.css', 'assets/css/sass/main.scss');
 			break;
 		case 'LESS':
-			this.template('main.css.tmpl', 'assets/css/less/main.less');
+			this.template('assets/main.css', 'assets/css/less/main.less');
 			break;
 		default:
-			this.template('main.css.tmpl', 'assets/css/main.css');
+			this.template('assets/main.css', 'assets/css/main.css');
 	}
 };

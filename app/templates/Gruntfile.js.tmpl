@@ -7,22 +7,6 @@ module.exports = function( grunt ) {
 	// Project configuration
 	grunt.initConfig( {
 		pkg:    grunt.file.readJSON( 'package.json' ),
-		concat: {
-			options: {
-				stripBanners: true,
-				banner: '/*! <%= pkg.title %> - v<%= pkg.version %> - <%= date_formatted %>\n' +
-					' * <%= pkg.name %>\n' +
-					' * Copyright (c) <%= year %>;' +
-					' * Licensed GPLv2+' +
-					' */\n'
-			},
-			scripts: {
-				src: [
-					'assets/js/_main.js'
-				],
-				dest: 'assets/js/main.js'
-			}
-		},
 		jshint: {
 			browser: {
 				all: [
@@ -42,20 +26,41 @@ module.exports = function( grunt ) {
 				}
 			}
 		},
+		// uglify to concat, minify, and make source maps
 		uglify: {
-			all: {
-				files: {
-					'assets/js/main.min.js': ['assets/js/main.js']
-				},
+			plugins: {
 				options: {
+					sourceMap: 'assets/js/plugins.js.map',
+					sourceMappingURL: 'plugins.js.map',
+					sourceMapPrefix: 2,
+					banner: '/*! <%= pkg.title %> - Plugins - v<%= pkg.version %> - <%= date_formatted %>\n' +
+						' * <%= pkg.name %>\n' +
+						' * Copyright (c) <%= year %>;' +
+						' * Licensed GPLv2+' +
+						' */\n',
+				},
+				files: {
+					'assets/js/plugins.min.js': [
+						'assets/js/source/plugins.js',
+						// 'assets/js/vendor/yourplugin/yourplugin.js',
+					]
+				}
+			},
+			main: {
+				options: {
+					sourceMap: 'assets/js/main.js.map',
+					sourceMappingURL: 'main.js.map',
+					sourceMapPrefix: 2,
 					banner: '/*! <%= pkg.title %> - v<%= pkg.version %> - <%= date_formatted %>\n' +
 						' * <%= pkg.name %>\n' +
 						' * Copyright (c) <%= year %>;' +
 						' * Licensed GPLv2+' +
 						' */\n',
-					mangle: {
-						except: ['jQuery']
-					}
+				},
+				files: {
+					'assets/js/main.min.js': [
+						'assets/js/source/main.js'
+					]
 				}
 			}
 		},
@@ -183,7 +188,7 @@ module.exports = function( grunt ) {
 			},
 			scripts: {
 				files: ['assets/js/**/*.js', 'assets/js/vendor/**/*.js'],
-				tasks: ['jshint', 'concat', 'uglify'],
+				tasks: ['jshint', 'uglify'],
 				options: {
 					debounceDelay: 500
 				}
@@ -193,11 +198,11 @@ module.exports = function( grunt ) {
 
 	// Default task.
 	<% if ('Sass' === css_type) { %>
-	grunt.registerTask( 'default', ['jshint', 'concat', 'uglify', 'compass', 'autoprefixer', 'cssmin', 'imagemin', 'version'] );
+	grunt.registerTask( 'default', ['jshint', 'uglify', 'compass', 'autoprefixer', 'cssmin', 'imagemin', 'version'] );
 	<% } else if ('LESS' === css_type) { %>
-	grunt.registerTask( 'default', ['jshint', 'concat', 'uglify', 'less', 'autoprefixer', 'cssmin', 'imagemin', 'version'] );
+	grunt.registerTask( 'default', ['jshint', 'uglify', 'less', 'autoprefixer', 'cssmin', 'imagemin', 'version'] );
 	<% } else { %>
-	grunt.registerTask( 'default', ['jshint', 'concat', 'uglify', 'autoprefixer', 'cssmin', 'imagemin', 'version'] );
+	grunt.registerTask( 'default', ['jshint', 'uglify', 'autoprefixer', 'cssmin', 'imagemin', 'version'] );
 	<% } %>
 
 	grunt.registerTask( 'dev', ['watch', 'imagemin'] );
