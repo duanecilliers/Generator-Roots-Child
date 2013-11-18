@@ -21,9 +21,8 @@ $ npm install -g yo
 
 ### TODO
 
-* Overwrite activation and remove uploads dir
 * change httpGeneratedImagesPath to 'assets/img'
-* Check if WP_LOCAL_DEV is defined in lib/scripts
+* integrate requireJS
 * add copy task for compass images
 
 ### Yeoman Generators

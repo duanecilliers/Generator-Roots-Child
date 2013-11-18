@@ -92,6 +92,7 @@ RootsChildGenerator.prototype.projectfiles = function projectfiles() {
 	this.template('theme.pot.tmpl', 'languages/' + this.theme_name + '.pot');
 	this.template('functions.php.tmpl', 'functions.php');
 	this.template('config.php.tmpl', 'lib/config.php');
+	this.template('activation.php.tmpl', 'lib/activation.php');
 	this.template('scripts.php.tmpl', 'lib/scripts.php');
 	this.template('Gruntfile.js.tmpl', 'Gruntfile.js');
 	switch (this.css_type) {
