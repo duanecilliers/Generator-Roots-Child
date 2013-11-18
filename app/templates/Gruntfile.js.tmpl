@@ -88,6 +88,19 @@ module.exports = function( grunt ) {
 				}
 			}
 		},
+		autoprefixer: {
+			options: {
+				browsers: ['last 1 version']
+			},
+			dist: {
+				files: [{
+					expand: true,
+					cwd: 'assets/css/',
+					src: '{,*/}*.css',
+					dest: 'assets/css/'
+				}]
+			}
+		},
 		<% } else if ('LESS' === css_type) { %>
 		less:   {
 			all: {
@@ -136,7 +149,7 @@ module.exports = function( grunt ) {
 			<% if ('Sass' === css_type) { %>
 			compass: {
 				files: ['assets/css/{,*/}*.{scss,sass}'],
-				tasks: ['compass:server', 'cssmin']
+				tasks: ['compass:server', 'autoprefixer', 'cssmin']
 			},
 			<% } else if ('LESS' === css_type) { %>
 			less: {
@@ -149,7 +162,7 @@ module.exports = function( grunt ) {
 			<% } else { %>
 			styles: {
 				files: ['assets/css/src/*.css'],
-				tasks: ['cssmin'],
+				tasks: ['autoprefixer', 'cssmin'],
 				options: {
 					debounceDelay: 500
 				}
@@ -180,11 +193,11 @@ module.exports = function( grunt ) {
 
 	// Default task.
 	<% if ('Sass' === css_type) { %>
-	grunt.registerTask( 'default', ['jshint', 'concat', 'uglify', 'compass', 'cssmin', 'imagemin', 'version'] );
+	grunt.registerTask( 'default', ['jshint', 'concat', 'uglify', 'compass', 'autoprefixer', 'cssmin', 'imagemin', 'version'] );
 	<% } else if ('LESS' === css_type) { %>
-	grunt.registerTask( 'default', ['jshint', 'concat', 'uglify', 'less', 'cssmin', 'imagemin', 'version'] );
+	grunt.registerTask( 'default', ['jshint', 'concat', 'uglify', 'less', 'autoprefixer', 'cssmin', 'imagemin', 'version'] );
 	<% } else { %>
-	grunt.registerTask( 'default', ['jshint', 'concat', 'uglify', 'cssmin', 'imagemin', 'version'] );
+	grunt.registerTask( 'default', ['jshint', 'concat', 'uglify', 'autoprefixer', 'cssmin', 'imagemin', 'version'] );
 	<% } %>
 
 	grunt.registerTask( 'dev', ['watch', 'imagemin'] );

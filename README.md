@@ -21,7 +21,6 @@ $ npm install -g yo
 
 ### TODO
 
-* include autoprefixer
 * use uglify to minify and concat js & remove concat task
 * set optimizationLevel for imagemin task
 * use uglify source maps and only enqueue minified assets
