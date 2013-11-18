@@ -187,6 +187,28 @@ module.exports = function( grunt ) {
 				files: ['**/*.php', '**/*.html'],
 				livereload: true
 			}
+		},
+		// deploy via rsync
+		deploy: {
+			options: {
+				src: "./",
+				args: ["--verbose"],
+				exclude: ['.git*', 'node_modules', '.sass-cache', 'Gruntfile.js', 'package.json', '.DS_Store', 'README.md', 'config.rb', '.jshintrc', '.gruntjshintrc', '.editorconfig'],
+				recursive: true,
+				syncDestIgnoreExcl: true
+			},
+			staging: {
+				options: {
+					dest: "~/path/to/theme",
+					host: "user@host.com"
+				}
+			},
+			production: {
+				options: {
+					dest: "~/path/to/theme",
+					host: "user@host.com"
+				}
+			}
 		}
 	} );
 
