@@ -99,7 +99,7 @@ RootsChildGenerator.prototype.projectfiles = function projectfiles() {
 	this.template('lib/activation.php', 'lib/activation.php');
 	this.template('lib/scripts.php', 'lib/scripts.php');
 
-	this.template('Gruntfile.js.tmpl', 'Gruntfile.js');
+	this.template('Gruntfile.js', 'Gruntfile.js');
 
 	switch (this.css_type) {
 		case 'Sass':
