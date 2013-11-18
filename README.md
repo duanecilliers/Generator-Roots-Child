@@ -21,7 +21,16 @@ $ npm install -g yo
 
 ### TODO
 
-* test fix compass images setup
+* test & fix compass images setup
+* add support for coffeescript
+* include autoprefixer
+* use uglify to minify and concat js & remove concat task
+* set optimizationLevel for imagemin task
+* use uglify source maps and only enqueue minified assets
+* remove imagemin task from grunt build and dev tasks. Run manually as it's not needed often and slows down build process.
+* add deployment option with the --advanced flag. See grunt-rsync & https://github.com/mattbanks/WordPress-Starter-Theme
+* add livereload in watch task - see https://github.com/mattbanks/WordPress-Starter-Theme/blob/master/Gruntfile.js
+* use tgma to instsall required plugins - see https://github.com/mattbanks/WordPress-Starter-Theme/blob/master/lib/theme-require-plugins.php
 
 ### Yeoman Generators
 
