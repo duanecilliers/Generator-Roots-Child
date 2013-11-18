@@ -21,9 +21,7 @@ $ npm install -g yo
 
 ### TODO
 
-* change httpGeneratedImagesPath to 'assets/img'
-* integrate requireJS
-* add copy task for compass images
+* test fix compass images setup
 
 ### Yeoman Generators
 
