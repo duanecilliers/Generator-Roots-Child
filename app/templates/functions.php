@@ -40,7 +40,7 @@ function <%= prefix %>_setup() {
 	 * If you're building a theme based on <%= theme_name %>, use a find and replace
 	 * to change '<%= prefix %>' to the name of your theme in all template files.
 	 */
-	load_theme_textdomain( '<%= prefix %>', get_template_directory() . '/languages' );
+	load_theme_textdomain( '<%= theme_name %>', get_template_directory() . '/languages' );
 }
 add_action( 'after_setup_theme', '<%= prefix %>_setup' );
 

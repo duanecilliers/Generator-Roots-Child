@@ -63,7 +63,7 @@ RootsChildGenerator.prototype.askFor = function askFor() {
 };
 
 RootsChildGenerator.prototype.projectdirs = function projectdirs() {
-	var dirs  = ['assets', 'assets/css', 'assets/img', 'assets/img/dist', 'assets/js', 'assets/js/source', 'assets/js/vendor', 'lib', 'templates', 'languages'];
+	var dirs  = ['assets', 'assets/css', 'assets/img', 'assets/img/dist', 'assets/js', 'assets/js/source', 'assets/js/vendor', 'lib', 'templates', 'lang'];
 	for (var i = 0; i < dirs.length; i++) {
 		this.mkdir(dirs[i]);
 	}
@@ -89,7 +89,7 @@ RootsChildGenerator.prototype.projectfiles = function projectfiles() {
 	this.template('bower.json', 'bower.json');
 	this.template('humans.txt', 'humans.txt');
 	this.template('style.css', 'style.css');
-	this.template('theme.pot', 'languages/' + this.theme_name + '.pot');
+	this.template('theme.pot', 'lang/' + this.theme_name + '.pot');
 	this.template('functions.php', 'functions.php');
 
 	this.template('assets/main.js', 'assets/js/source/main.js');
