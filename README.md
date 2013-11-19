@@ -21,7 +21,7 @@ $ npm install -g yo
 
 ### TODO
 
-* Enqueue plugins.min.js
+* Better static asset versioning
 * Create shared dir and symlink uploads
 * Add modernizr prompt instead of theme_support
 * test & fix compass images setup
