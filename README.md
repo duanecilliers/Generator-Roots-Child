@@ -21,7 +21,6 @@ $ npm install -g yo
 
 ### TODO
 
-* test & fix compass images setup
 * consider deployment prompts with the --advanced flag. Currently included by default
 	See grunt-rsync & https://github.com/mattbanks/WordPress-Starter-Theme
 * use tgma to install required plugins - see https://github.com/mattbanks/WordPress-Starter-Theme/blob/master/lib/theme-require-plugins.php

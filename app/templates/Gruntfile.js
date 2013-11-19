@@ -74,7 +74,7 @@ module.exports = function( grunt ) {
 			options: {
 				sassDir: 'assets/css/sass',
 				cssDir: 'assets/css',
-				generatedImagesDir: 'assets/img/.tmp/generated',
+				generatedImagesDir: 'assets/img/generated',
 				imagesDir: 'assets/img',
 				javascriptsDir: 'assets/js',
 				fontsDir: 'assets/css/fonts',
