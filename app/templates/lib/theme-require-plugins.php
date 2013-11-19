@@ -48,6 +48,12 @@ function <%= prefix %>_register_required_plugins() {
 		),
 
 		array(
+			'name'				=> 'Codepress Admin Columns',
+			'slug'				=> 'codepress-admin-columns',
+			'required'			=> false
+		),
+
+		array(
 			'name' 				=> 'HTML5 Boilerplate .htaccess',
 			'slug'				=> 'wp-h5bp-htaccess',
 			'source'			=> 'https://github.com/roots/wp-h5bp-htaccess/archive/master.zip',
