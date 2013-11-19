@@ -51,3 +51,11 @@ function <%= prefix %>_header_meta() {
 	echo apply_filters( '<%= prefix %>_humans', $humans );
 }
 add_action( 'wp_head', '<%= prefix %>_header_meta' );
+
+/**
+ * filter Yoast SEO metabox priority
+ */
+add_filter( 'wpseo_metabox_prio', 'mb_filter_yoast_seo_metabox' );
+function mb_filter_yoast_seo_metabox() {
+        return 'low';
+}
