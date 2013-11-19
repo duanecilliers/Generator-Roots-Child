@@ -37,13 +37,13 @@ function <%= prefix %>_scripts() {
 	wp_dequeue_script('roots_scripts');
 	wp_deregister_script('roots_scripts');
 
-	wp_register_script('<%= prefix %>_scripts', get_stylesheet_directory_uri() . "/assets/js/main.min.js", array('jquery'), 'be373268f9b8ecda7c3a45154676e637', true);
-
 	// enqueue modernizr from roots parent theme if child theme supports it. Enable in lib/config.php
 	if ( get_theme_support('modernizr') )
 		wp_enqueue_script('modernizr', get_template_directory_uri() . '/assets/js/vendor/modernizr-2.6.2.min.js', false, null, false);
 	wp_enqueue_script('jquery');
-	wp_enqueue_script('<%= prefix %>_scripts');
+
+	wp_enqueue_script( '<%= prefix %>_plugins', get_stylesheet_directory_uri() . '/assets/js/plugins.min.js', array( 'jquery' ), 'be373268f9b8ecda7c3a45154676e637', true );
+	wp_enqueue_script( '<%= prefix %>_main', get_stylesheet_directory_uri() . "/assets/js/main.min.js", array( 'jquery', '<%= prefix %>_plugins' ), 'be373268f9b8ecda7c3a45154676e637', true );
 }
 
 // http://wordpress.stackexchange.com/a/12450
