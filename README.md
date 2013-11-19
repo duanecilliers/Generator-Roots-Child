@@ -21,7 +21,6 @@ $ npm install -g yo
 
 ### TODO
 
-* Fire UTIL on jQuery safe document ready
 * Enqueue plugins.min.js
 * Create shared dir and symlink uploads
 * test & fix compass images setup

@@ -51,4 +51,6 @@ var UTIL = {
 	}
 };
 
-$(document).ready(UTIL.loadEvents);
+jQuery(document).ready(function($) {
+	UTIL.loadEvents
+});
