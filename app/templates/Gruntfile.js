@@ -33,7 +33,7 @@ module.exports = function( grunt ) {
 					sourceMap: 'assets/js/plugins.js.map',
 					sourceMappingURL: 'plugins.js.map',
 					sourceMapPrefix: 2,
-					banner: '/*! <%= pkg.title %> - Plugins - v<%= pkg.version %> - <%= date_formatted %>\n' +
+					banner: '/*! <%= theme_name %> - Plugins - <%= date_formatted %>\n' +
 						' * <%= pkg.name %>\n' +
 						' * Copyright (c) <%= year %>;' +
 						' * Licensed GPLv2+' +
@@ -52,7 +52,7 @@ module.exports = function( grunt ) {
 					sourceMap: 'assets/js/main.js.map',
 					sourceMappingURL: 'main.js.map',
 					sourceMapPrefix: 2,
-					banner: '/*! <%= pkg.title %> - v<%= pkg.version %> - <%= date_formatted %>\n' +
+					banner: '/*! <%= theme_name %> <%= date_formatted %>\n' +
 						' * <%= pkg.name %>\n' +
 						' * Copyright (c) <%= year %>;' +
 						' * Licensed GPLv2+' +
