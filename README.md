@@ -21,6 +21,9 @@ $ npm install -g yo
 
 ### TODO
 
+* Fire UTIL on jQuery safe document ready
+* Enqueue plugins.min.js
+* Create shared dir and symlink uploads
 * test & fix compass images setup
 * consider deployment prompts with the --advanced flag. Currently included by default
 	See grunt-rsync & https://github.com/mattbanks/WordPress-Starter-Theme
