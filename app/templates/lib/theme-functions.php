@@ -21,7 +21,13 @@ function <%= prefix %>_change_contactmethods( $contactmethods ) {
 
 	return $contactmethods;
 }
-add_filter( 'user_contactmethods', '<%= prefix %>_change_contactmethod', 10, 1 );
+
+/**
+ * filter Yoast SEO metabox priority
+ */
+function <%= prefix %>_filter_yoast_seo_metabox() {
+        return 'low';
+}
 
 /**
  * Don't Update Theme
@@ -46,8 +52,6 @@ function <%= prefix %>_dont_update_theme( $r, $url ) {
 	$r['body']['themes'] = serialize( $themes );
 	return $r;
 }
-// Don't update theme
-add_filter( 'http_request_args', '<%= prefix %>_dont_update_theme', 5, 2 );
 
 /**
  * Remove Dashboard Meta Boxes
@@ -63,7 +67,6 @@ function <%= prefix %>_remove_dashboard_widgets() {
 	unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_primary']);
 	unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_secondary']);
 }
-add_action('wp_dashboard_setup', '<%= prefix %>_remove_dashboard_widgets' );
 
 /**
  * Change Admin Menu Order
@@ -88,9 +91,6 @@ function <%= prefix %>_custom_menu_order($menu_ord) {
 		// 'separator-last', // Last separator
 	);
 }
-// Change Admin Menu Order
-add_filter( 'custom_menu_order', '<%= prefix %>_custom_menu_order' );
-add_filter( 'menu_order', '<%= prefix %>_custom_menu_order' );
 
 /**
  * Hide Admin Areas that are not used
@@ -98,7 +98,6 @@ add_filter( 'menu_order', '<%= prefix %>_custom_menu_order' );
 function <%= prefix %>_remove_menu_pages() {
 	// remove_menu_page('link-manager.php');
 }
-add_action( 'admin_menu', '<%= prefix %>_remove_menu_pages' );
 
 /**
  * Remove default link for images
@@ -109,7 +108,6 @@ function <%= prefix %>_imagelink_setup() {
 		update_option('image_default_link_type', 'none');
 	}
 }
-add_action( 'admin_init', '<%= prefix %>_imagelink_setup', 10 );
 
 /**
  * Show Kitchen Sink in WYSIWYG Editor
@@ -118,11 +116,28 @@ function <%= prefix %>_unhide_kitchensink($args) {
 	$args['wordpress_adv_hidden'] = false;
 	return $args;
 }
-add_filter( 'tiny_mce_before_init', '<%= prefix %>_unhide_kitchensink' );
 
 /****************************************
 Frontend
 *****************************************/
+
+/**
+ * Enqueue scripts and styles. Located in lib/scripts.php
+ */
+add_action('wp_enqueue_scripts', '<%= prefix %>_scripts', 100);
+
+/**
+ * jQuery local fallback. Located in lib/scripts.php
+ */
+add_action('wp_head', '<%= prefix %>_jquery_local_fallback');
+
+ /**
+  * Add humans.txt to the <head> element.
+  */
+function <%= prefix %>_header_meta() {
+	$humans = '<link type="text/plain" rel="author" href="' . get_stylesheet_directory_uri() . '/humans.txt" />';
+	echo apply_filters( '<%= prefix %>_humans', $humans );
+}
 
 /**
  * Remove Query Strings From Static Resources
@@ -131,8 +146,6 @@ function <%= prefix %>_remove_script_version($src){
 	$parts = explode('?', $src);
 	return $parts[0];
 }
-add_filter( 'script_loader_src', '<%= prefix %>_remove_script_version', 15, 1 );
-add_filter( 'style_loader_src', '<%= prefix %>_remove_script_version', 15, 1 );
 
 /**
  * Remove Read More Jump
@@ -147,4 +160,3 @@ function <%= prefix %>_remove_more_jump_link($link) {
 	}
 	return $link;
 }
-add_filter( 'the_content_more_link', '<%= prefix %>_remove_more_jump_link' );

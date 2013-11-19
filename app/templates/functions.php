@@ -41,23 +41,70 @@ function <%= prefix %>_setup() {
 	 * to change '<%= prefix %>' to the name of your theme in all template files.
 	 */
 	load_theme_textdomain( '<%= theme_name %>', get_template_directory() . '/languages' );
+
+	/****************************************
+	Backend
+	*****************************************/
+
+	/**
+	 * filter Yoast SEO metabox priority
+	 */
+	add_filter( 'wpseo_metabox_prio', '<%= prefix %>_filter_yoast_seo_metabox' );
+
+	/**
+	 * Customize contact methods
+	 */
+	add_filter( 'user_contactmethods', '<%= prefix %>_change_contactmethod', 10, 1 );
+
+	/**
+	 * Don't update theme if theme with same name exists in WP theme repo
+	 */
+	add_filter( 'http_request_args', '<%= prefix %>_dont_update_theme', 5, 2 );
+
+	/**
+	 * Remove dashboard metaboxes
+	 */
+	add_action('wp_dashboard_setup', '<%= prefix %>_remove_dashboard_widgets' );
+
+	/**
+	 * Change Admin Menu Order
+	 */
+	add_filter( 'custom_menu_order', '<%= prefix %>_custom_menu_order' );
+	add_filter( 'menu_order', '<%= prefix %>_custom_menu_order' );
+
+	/**
+	 * Hide admin areas that aren't used
+	 */
+	add_action( 'admin_menu', '<%= prefix %>_remove_menu_pages' );
+
+	/**
+	 * Remove default link for images
+	 */
+	add_action( 'admin_init', '<%= prefix %>_imagelink_setup', 10 );
+
+	/**
+	 * Show kitchen Sink in WYSIWYG editor
+	 */
+	add_filter( 'tiny_mce_before_init', '<%= prefix %>_unhide_kitchensink' );
+
+	/****************************************
+	Frontend
+	*****************************************/
+
+	/**
+	  * Add humans.txt to the <head> element.
+	  */
+	add_action( 'wp_head', '<%= prefix %>_header_meta' );
+
+	/**
+	 * Remove Query Strings From Static Resources
+	 */
+	add_filter( 'script_loader_src', '<%= prefix %>_remove_script_version', 15, 1 );
+	add_filter( 'style_loader_src', '<%= prefix %>_remove_script_version', 15, 1 );
+
+	/**
+	 * Remove Read More Jump
+	 */
+	add_filter( 'the_content_more_link', '<%= prefix %>_remove_more_jump_link' );
 }
 add_action( 'after_setup_theme', '<%= prefix %>_setup' );
-
- /**
-  * Add humans.txt to the <head> element.
-  */
-function <%= prefix %>_header_meta() {
-	$humans = '<link type="text/plain" rel="author" href="' . get_stylesheet_directory_uri() . '/humans.txt" />';
-
-	echo apply_filters( '<%= prefix %>_humans', $humans );
-}
-add_action( 'wp_head', '<%= prefix %>_header_meta' );
-
-/**
- * filter Yoast SEO metabox priority
- */
-add_filter( 'wpseo_metabox_prio', '<%= prefix %>_filter_yoast_seo_metabox' );
-function <%= prefix %>_filter_yoast_seo_metabox() {
-        return 'low';
-}
