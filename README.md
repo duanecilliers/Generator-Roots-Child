@@ -21,7 +21,6 @@ $ npm install -g yo
 
 ### TODO
 
-* Better static asset versioning
 * Create shared dir and symlink uploads
 * Add modernizr prompt instead of theme_support
 * test & fix compass images setup

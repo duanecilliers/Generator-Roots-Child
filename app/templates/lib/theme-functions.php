@@ -1,6 +1,14 @@
 <?php
 
 /****************************************
+Utility Functions
+*****************************************/
+
+function <%= prefix %>_is_dev_mode() {
+	return ( defined( 'WP_DEV_MODE' ) && true == WP_DEV_MODE ) ? true : false;
+}
+
+/****************************************
 Backend Functions
 *****************************************/
 

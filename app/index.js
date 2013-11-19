@@ -63,7 +63,7 @@ RootsChildGenerator.prototype.askFor = function askFor() {
 };
 
 RootsChildGenerator.prototype.projectdirs = function projectdirs() {
-	var dirs  = ['assets', 'assets/css', 'assets/img', 'assets/img/dist', 'assets/js', 'assets/js/source', 'assets/js/vendor', 'lib', 'templates', 'lang'];
+	var dirs  = ['assets', 'assets/dist', 'assets/css', 'assets/img', 'assets/img/dist', 'assets/js', 'assets/js/source', 'assets/js/vendor', 'lib', 'templates', 'lang'];
 	for (var i = 0; i < dirs.length; i++) {
 		this.mkdir(dirs[i]);
 	}

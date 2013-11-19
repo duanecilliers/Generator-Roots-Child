@@ -39,12 +39,13 @@ module.exports = function( grunt ) {
 						' * Licensed GPLv2+' +
 						' */\n',
 				},
-				files: {
-					'assets/js/plugins.min.js': [
+				files: [{
+					src: [
 						'assets/js/source/plugins.js',
 						// 'assets/js/vendor/yourplugin/yourplugin.js',
-					]
-				}
+					],
+					dest: 'assets/js/plugins.min.js'
+				}]
 			},
 			main: {
 				options: {
@@ -57,11 +58,12 @@ module.exports = function( grunt ) {
 						' * Licensed GPLv2+' +
 						' */\n',
 				},
-				files: {
-					'assets/js/main.min.js': [
+				files: [{
+					src: [
 						'assets/js/source/main.js'
-					]
-				}
+					],
+					dest: 'assets/js/main.min.js'
+				}]
 			}
 		},
 		test:   {
@@ -145,13 +147,35 @@ module.exports = function( grunt ) {
 				}]
 			}
 		},
-		version: {
+		versioning: {
 			options: {
-				file: 'lib/scripts.php',
-				css: 'assets/css/main.min.css',
-				cssHandle: '<%= prefix %>_main',
-				js: 'assets/js/main.min.js',
-				jsHandle: '<%= prefix %>_scripts'
+				cwd: 'assets/dist',
+				output: 'php',
+				outputConfigDir: 'lib'
+			},
+			dist: {
+				files: [{
+					assets: '<%%= uglify.plugins.files %>',
+					key: 'global',
+					dest: 'js',
+					type: 'js',
+					ext: '.min.js'
+				}, {
+					assets: '<%%= uglify.main.files %>',
+					key: 'global',
+					dest: 'js',
+					type: 'js',
+					ext: '.min.js'
+				}, {
+					assets: [{
+						src: ['assets/css/main.min.css'],
+						dest: 'assets/css/main.min.css'
+					}],
+					key: 'global',
+					dest: 'css',
+					type: 'css',
+					ext: '.min.css'
+				}]
 			}
 		},
 		watch:  {
@@ -214,11 +238,11 @@ module.exports = function( grunt ) {
 
 	// Default task.
 	<% if ('Sass' === css_type) { %>
-	grunt.registerTask( 'default', ['jshint', 'uglify', 'compass', 'autoprefixer', 'cssmin', 'version'] );
+	grunt.registerTask( 'default', ['jshint', 'uglify', 'compass', 'autoprefixer', 'cssmin', 'versioning'] );
 	<% } else if ('LESS' === css_type) { %>
-	grunt.registerTask( 'default', ['jshint', 'uglify', 'less', 'autoprefixer', 'cssmin', 'version'] );
+	grunt.registerTask( 'default', ['jshint', 'uglify', 'less', 'autoprefixer', 'cssmin', 'versioning'] );
 	<% } else { %>
-	grunt.registerTask( 'default', ['jshint', 'uglify', 'autoprefixer', 'cssmin', 'version'] );
+	grunt.registerTask( 'default', ['jshint', 'uglify', 'autoprefixer', 'cssmin', 'versioning'] );
 	<% } %>
 
 	grunt.registerTask( 'dev', ['watch'] );
