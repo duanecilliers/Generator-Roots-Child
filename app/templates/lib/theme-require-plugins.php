@@ -54,6 +54,18 @@ function <%= prefix %>_register_required_plugins() {
 		),
 
 		array(
+			'name'				=> 'WooSidebars',
+			'slug'				=> 'woosidebars',
+			'required'			=> false
+		),
+
+		array(
+			'name'				=> 'Developer',
+			'slug'				=> 'developer',
+			'required'			=> false
+		),
+
+		array(
 			'name' 				=> 'HTML5 Boilerplate .htaccess',
 			'slug'				=> 'wp-h5bp-htaccess',
 			'source'			=> 'https://github.com/roots/wp-h5bp-htaccess/archive/master.zip',
