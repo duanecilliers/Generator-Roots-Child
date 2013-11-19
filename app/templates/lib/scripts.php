@@ -21,8 +21,9 @@ function <%= prefix %>_scripts() {
 	if ( ! <%= prefix %>_is_dev_mode() ) {
 		$config = include( get_stylesheet_directory() . '/lib/assets.config.php' );
 		$main_versioned_css = $config['staticAssets']['global']['css'][0];
-		$plugins_versioned_js = $config['staticAssets']['global']['js'][0];
-		$main_versioned_js = $config['staticAssets']['global']['js'][1];
+		$modernizr_versioned_js = $config['staticAssets']['global']['js'][0];
+		$plugins_versioned_js = $config['staticAssets']['global']['js'][1];
+		$main_versioned_js = $config['staticAssets']['global']['js'][2];
 	}
 
 	$main_css = ( <%= prefix %>_is_dev_mode() ) ? '/assets/css/main.min.css' : '/assets/dist' . $main_versioned_css;
@@ -44,10 +45,10 @@ function <%= prefix %>_scripts() {
 	// deregister and dequeue roots_scripts
 	wp_dequeue_script( 'roots_scripts' );
 	wp_deregister_script( 'roots_scripts' );
-
-	// enqueue modernizr from roots parent theme if child theme supports it. Enable in lib/config.php
-	if ( get_theme_support( 'modernizr' ) )
-		wp_enqueue_script( 'modernizr', get_template_directory_uri() . '/assets/js/vendor/modernizr-2.6.2.min.js', false, null, false );
+	<% if (modernizr) { %>
+	$modernizr_js = ( <%= prefix %>_is_dev_mode() ) ? '/bower_components/modernizr/modernizr.js' : '/assets/dist' . $modernizr_versioned_js;
+	wp_enqueue_script( 'modernizr', get_stylesheet_directory_uri() . $modernizr_js, false, null, false );
+	<% } %>
 	wp_enqueue_script( 'jquery' );
 
 	$plugins_js = ( <%= prefix %>_is_dev_mode() ) ? '/assets/js/plugins.min.js' : '/assets/dist' . $plugins_versioned_js;

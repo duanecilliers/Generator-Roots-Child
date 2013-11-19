@@ -47,6 +47,10 @@ module.exports = function() {
 			message: 'CSS Preprocessor: Will you use "Sass", "LESS", or "none" for CSS with this project?',
 			type: 'list',
 			choices: [ 'Sass', 'LESS',  'none' ]
+		}, {
+			name: 'modernizr',
+			message: 'Include modernizr in your theme?',
+			type: 'confirm'
 		}
 	];
 

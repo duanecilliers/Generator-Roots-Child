@@ -51,6 +51,7 @@ RootsChildGenerator.prototype.askFor = function askFor() {
 					me.author_url = input.author_url;
 					me.author_email = input.author_email;
 					me.css_type = input.css_type;
+					me.modernizr = input.modernizr;
 					done();
 				} else {
 					console.log();

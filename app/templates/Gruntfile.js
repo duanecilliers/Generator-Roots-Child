@@ -155,6 +155,15 @@ module.exports = function( grunt ) {
 			},
 			dist: {
 				files: [{
+					assets: [{
+						src: ['assets/js/vendor/modernizr.js'],
+						dest: 'assets/js/vendor/modernizr.js'
+					}],
+					key: 'global',
+					dest: 'js',
+					type: 'js',
+					ext: '.min.js'
+				}, {
 					assets: '<%%= uglify.plugins.files %>',
 					key: 'global',
 					dest: 'js',
@@ -177,7 +186,30 @@ module.exports = function( grunt ) {
 					ext: '.min.css'
 				}]
 			}
-		},
+		},<% if (modernizr) { %>
+		// Generates a custom Modernizr build that includes only the tests you
+		// reference in your app
+		modernizr: {
+			devFile: "bower_components/modernizr/modernizr.js",
+			outputFile: "assets/js/vendor/modernizr.js",
+			excludeFiles: [
+				'assets/js/vendor/*'
+			],
+
+			// By default, source is uglified before saving
+			uglify: true,
+
+			// By default, this task will crawl your project for references to Modernizr tests.
+			// Set to false to disable.
+			parseFiles: false,
+
+			// When parseFiles = true, this task will crawl all *.js, *.css, *.scss files, except files that are in node_modules/.
+			// You can override this by defining a "files" array below.
+			files: [
+				'assets/js/{,*/}*.js',
+				'assets/css/{,*/}*.scss'
+			]
+		},<% } %>
 		watch:  {
 			options: {
 				livereload: true
@@ -237,13 +269,16 @@ module.exports = function( grunt ) {
 	} );
 
 	// Default task.
-	<% if ('Sass' === css_type) { %>
-	grunt.registerTask( 'default', ['jshint', 'uglify', 'compass', 'autoprefixer', 'cssmin', 'versioning'] );
-	<% } else if ('LESS' === css_type) { %>
-	grunt.registerTask( 'default', ['jshint', 'uglify', 'less', 'autoprefixer', 'cssmin', 'versioning'] );
-	<% } else { %>
-	grunt.registerTask( 'default', ['jshint', 'uglify', 'autoprefixer', 'cssmin', 'versioning'] );
-	<% } %>
+	grunt.registerTask( 'default', [
+		'jshint',
+		'uglify',<% if ('Sass' === css_type) { %>
+		'compass',<% } else if ('LESS' === css_type) { %>
+		'less',<% } %>
+		'autoprefixer',
+		'cssmin',<% if (modernizr) { %>
+		'modernizr',<% } %>
+		'versioning'
+	] );
 
 	grunt.registerTask( 'dev', ['watch'] );
 

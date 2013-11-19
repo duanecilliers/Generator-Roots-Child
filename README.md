@@ -21,7 +21,6 @@ $ npm install -g yo
 
 ### TODO
 
-* Add modernizr prompt instead of theme_support
 * test & fix compass images setup
 * consider deployment prompts with the --advanced flag. Currently included by default
 	See grunt-rsync & https://github.com/mattbanks/WordPress-Starter-Theme
