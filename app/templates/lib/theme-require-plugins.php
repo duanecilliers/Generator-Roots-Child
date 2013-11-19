@@ -35,6 +35,26 @@ function <%= prefix %>_register_required_plugins() {
 			'force_activation'	=> true
 		),
 
+		array(
+			'name'				=> 'Better WP Security',
+			'slug'				=> 'better-wp-security',
+			'required'			=> true
+		),
+
+		array(
+			'name'				=> 'W3 Total Cache',
+			'slug'				=> 'w3-total-cache',
+			'required'			=> true
+		),
+
+		array(
+			'name' 				=> 'HTML5 Boilerplate .htaccess',
+			'slug'				=> 'wp-h5bp-htaccess',
+			'source'			=> 'https://github.com/roots/wp-h5bp-htaccess/archive/master.zip',
+			'external_url'		=> 'http://roots.io/plugins/html5-boilerplate-htaccess/',
+			'required'			=> false,
+		)
+
 	);
 
 	// Change this to your theme text domain, used for internationalising strings
