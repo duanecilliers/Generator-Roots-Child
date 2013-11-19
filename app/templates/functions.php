@@ -15,13 +15,15 @@
  // Useful global constants
 define( '<%= prefix_caps %>_VERSION', '0.1.0' );
 
+require_once( get_stylesheet_directory() . '/lib/theme-functions.php' );
+
 /**
  * Require plugins
  */
 require_once( get_stylesheet_directory() . '/lib/class-tgm-plugin-activation.php' );
 require_once( get_stylesheet_directory() . '/lib/theme-require-plugins.php' );
 
-add_action( 'tgmpa_register', 'mb_register_required_plugins' );
+add_action( 'tgmpa_register', '<%= prefix %>_register_required_plugins' );
 
  /**
   * Set up theme defaults and register supported WordPress features.
@@ -55,7 +57,7 @@ add_action( 'wp_head', '<%= prefix %>_header_meta' );
 /**
  * filter Yoast SEO metabox priority
  */
-add_filter( 'wpseo_metabox_prio', 'mb_filter_yoast_seo_metabox' );
-function mb_filter_yoast_seo_metabox() {
+add_filter( 'wpseo_metabox_prio', '<%= prefix %>_filter_yoast_seo_metabox' );
+function <%= prefix %>_filter_yoast_seo_metabox() {
         return 'low';
 }

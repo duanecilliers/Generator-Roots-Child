@@ -3,7 +3,7 @@
 /**
  * Register the required plugins for this theme.
  */
-function mb_register_required_plugins() {
+function <%= prefix %>_register_required_plugins() {
 
 	$plugins = array(
 
