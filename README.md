@@ -36,11 +36,11 @@ A [Roots](https://github.com/roots/roots) child theme for WordPress. Dequeues Ro
 
 ## Bower
 
-Supports [bower](https://github.com/bower/bower) to install and manage JavaScript dependencies in the bower_components folder.
+Supports [bower](https://github.com/bower/bower) to install and manage dependencies in the bower_components folder.
 
 ## TODOs
 
-* consider deployment config prompts
+* Consider deployment config prompts
 
 ## License
 
