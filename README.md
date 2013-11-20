@@ -2,7 +2,7 @@
 
 Version: 1.0.0-alpha
 
-A [Yeoman](http://yeoman.io) generator for scaffolding a custom Roots child theme.
+A [Yeoman](http://yeoman.io) generator for scaffolding a custom [Roots](https://github.com/roots/roots) child theme.
 
 ## Contributors
 
@@ -12,19 +12,6 @@ Duane Cilliers ( [@duanecilliers](https://twitter.com/duanecilliers) / [signpost
 ## Summary
 
 A [Roots](https://github.com/roots/roots) child theme for WordPress. Dequeues Roots styles and scripts and uses Compass/SCSS with Sass-Bootstrap and Grunt for all tasks.
-
-## Tasks
-
-* jshint - Validate files
-* uglify - Minify files
-* compass - Compile
-* autoprefixer
-* cssmin
-* imagemin
-* versioning
-* modernizr
-* watch - Autoprefix, compile Sass and minify CSS. Validate, concatenate and minify Javascript. Livereload when any files change.
-* deploy
 
 ## Features
 
@@ -51,7 +38,7 @@ A [Roots](https://github.com/roots/roots) child theme for WordPress. Dequeues Ro
 
 Supports [bower](https://github.com/bower/bower) to install and manage JavaScript dependencies in the bower_components folder.
 
-### TODO
+## TODOs
 
 * consider deployment config prompts
 
