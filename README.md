@@ -1,51 +1,59 @@
-# generator-roots-child [![Build Status](https://secure.travis-ci.org/duanecilliers/generator-roots-child.png?branch=master)](https://travis-ci.org/duanecilliers/generator-roots-child)
+# Roots child theme generator
 
-A generator for [Yeoman](http://yeoman.io).
+Version: 1.0.0-alpha
+
+A [Yeoman](http://yeoman.io) generator for scaffolding a custom Roots child theme.
+
+## Contributors
+
+Duane Cilliers ( [@duanecilliers](https://twitter.com/duanecilliers) / [signpost.co.za](http://www.signpost.co.za) / [duane.co.za](http://duane.co.za) )
 
 
-## Getting Started
+## Summary
 
-### What is Yeoman?
+A [Roots](https://github.com/roots/roots) child theme for WordPress. Dequeues Roots styles and scripts and uses Compass/SCSS with Sass-Bootstrap and Grunt for all tasks.
 
-Trick question. It's not a thing. It's this guy:
+## Tasks
 
-![](http://i.imgur.com/JHaAlBJ.png)
+* jshint - Validate files
+* uglify - Minify files
+* compass - Compile
+* autoprefixer
+* cssmin
+* imagemin
+* versioning
+* modernizr
+* watch - Autoprefix, compile Sass and minify CSS. Validate, concatenate and minify Javascript. Livereload when any files change.
+* deploy
 
-Basically, he wears a top hat, lives in your computer, and waits for you to tell him what kind of application you wish to create.
+## Features
 
-Not every new computer comes with a Yeoman pre-installed. He lives in the [npm](https://npmjs.org) package repository. You only have to ask for him once, then he packs up and moves into your hard drive. *Make sure you clean up, he likes new and shiny things.*
+* All the benefits of Roots
+* Choose between Sass Bootstrap, LESS Bootsrap or no CSS pre-processor (enqueues minified Bootstrap).
+* [LiveReload](http://livereload.com/) the browser (with extension)
+* CSS Autoprefixing
+* Automatically compile Compass/Sass/Less
+* Automatically lint, concatenate and minify your JavaScript (with source maps)
+* Automatically version your styles and scripts with an md5 hash
+* Awesome Image Optimization (via OptiPNG, pngquant, jpegtran and gifsicle)
+* Optional - Leaner Modernizr builds
+* Deploy your theme via Rsync
 
-```
-$ npm install -g yo
-```
+## Usage
+
+* Clone the repo`git clone https://github.com/duanecilliers/Generator-Roots-Child.git`
+* Run `npm link` to symlink to your ENV PATH. (Publishing as a NPM package soon!)
+* Run `yo roots-child` inside an empty theme directory
+* Run `grunt` for building and `grunt dev` for watching and compiling
+* Make sure you have [Roots](https://github.com/roots/roots) (the parent theme) installed
+
+## Bower
+
+Supports [bower](https://github.com/bower/bower) to install and manage JavaScript dependencies in the bower_components folder.
 
 ### TODO
 
-* consider deployment prompts with the --advanced flag. Currently included by default
-	See grunt-rsync & https://github.com/mattbanks/WordPress-Starter-Theme
-
-### Yeoman Generators
-
-Yeoman travels light. He didn't pack any generators when he moved in. You can think of a generator like a plug-in. You get to choose what type of application you wish to create, such as a Backbone application or even a Chrome extension.
-
-To install generator-roots-child from npm, run:
-
-```
-$ npm install -g generator-roots-child
-```
-
-Finally, initiate the generator:
-
-```
-$ yo roots-child
-```
-
-### Getting To Know Yeoman
-
-Yeoman has a heart of gold. He's a person with feelings and opinions, but he's very easy to work with. If you think he's too opinionated, he can be easily convinced.
-
-If you'd like to get to know Yeoman better and meet some of his friends, [Grunt](http://gruntjs.com) and [Bower](http://bower.io), check out the complete [Getting Started Guide](https://github.com/yeoman/yeoman/wiki/Getting-Started).
-
+* consider deployment config prompts
 
 ## License
 
