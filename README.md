@@ -40,6 +40,7 @@ Supports [bower](https://github.com/bower/bower) to install and manage dependenc
 
 ## TODOs
 
+* Add editor-styles.scss and fix admin bar profile avatar alignment
 * Consider deployment config prompts
 
 ## License
