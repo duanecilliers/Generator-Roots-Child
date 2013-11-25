@@ -11,7 +11,7 @@ Duane Cilliers ( [@duanecilliers](https://twitter.com/duanecilliers) / [signpost
 
 ## Summary
 
-A [Roots](https://github.com/roots/roots) child theme generator for WordPress. Choose between Sass Bootsrap, LESS Bootstrap or CSS bootstrap, optionally include Modernizr with leaner builds and Grunt for all tasks.
+A [Roots](https://github.com/roots/roots) child theme generator for WordPress. Choose between Sass Bootstrap, LESS Bootstrap or CSS bootstrap, optionally include Modernizr with leaner builds and Grunt for all tasks.
 
 ## Features
 
