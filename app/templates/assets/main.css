@@ -9,6 +9,10 @@
 @import "../../../bower_components/sass-bootstrap/lib/bootstrap";<% } %><% if (css_type == 'LESS') { %>
 @import "../../../bower_components/bootstrap/lib/bootstrap";
 <% } %>
+
+/* Fix admin bar avatar alignment */
+#wpadminbar .quicklinks li#wp-admin-bar-my-account.with-avatar>a img { float: none !important; }
+
 /**
  * Your styles here
  */
