@@ -40,7 +40,6 @@ Supports [bower](https://github.com/bower/bower) to install and manage dependenc
 
 ## TODOs
 
-* Fix Gruntfile watch uglify. Enqueue unminified main.js to prevent doulbe reload on refresh
 * Consider deployment config prompts
 
 ## License

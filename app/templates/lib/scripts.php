@@ -52,7 +52,7 @@ function <%= prefix %>_scripts() {
 	wp_enqueue_script( 'jquery' );
 
 	$plugins_js = ( <%= prefix %>_is_dev_mode() ) ? '/assets/js/plugins.min.js' : '/assets/dist' . $plugins_versioned_js;
-	$main_js = ( <%= prefix %>_is_dev_mode() ) ? '/assets/js/main.min.js' : '/assets/dist' . $main_versioned_js;
+	$main_js = ( <%= prefix %>_is_dev_mode() ) ? '/assets/js/main.js' : '/assets/dist' . $main_versioned_js;
 	wp_enqueue_script( '<%= prefix %>_plugins', get_stylesheet_directory_uri() . $plugins_js, array( 'jquery' ), null, true );
 	wp_enqueue_script( '<%= prefix %>_main', get_stylesheet_directory_uri() . $main_js, array( 'jquery', '<%= prefix %>_plugins' ), null, true );
 }
