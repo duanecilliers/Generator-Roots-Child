@@ -1,6 +1,6 @@
 # Roots child theme generator
 
-Version: 1.0.0-alpha
+Version: 0.1.4
 
 A [Yeoman](http://yeoman.io) generator for scaffolding a custom [Roots](https://github.com/roots/roots) child theme.
 
