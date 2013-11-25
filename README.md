@@ -38,6 +38,12 @@ A [Roots](https://github.com/roots/roots) child theme for WordPress. Dequeues Ro
 
 Supports [bower](https://github.com/bower/bower) to install and manage dependencies in the bower_components folder.
 
+## FAQs
+
+* Why are no styles reflecting?
+    * If the 'WP_DEV_MODE' constant is set to true, be sure to run `$ grunt dev` to watch and compile changes.
+    If 'WP_DEV_MODE' is not set or is false, minified assets are enqueued, so be sure to run `$ grunt` which compiles and minfies CSS and JavaScript. While developing, I suggest adding `define( 'WP_DEV_MODE', true )` to wp-config.php.
+
 ## TODOs
 
 * Consider deployment config prompts

@@ -14,9 +14,8 @@
  * 3. /<%= theme_name %>/assets/js/main.min.js (in footer)
  */
 function <%= prefix %>_scripts() {
-
-	<% if (css_type != 'None') { %>
-	wp_dequeue_script( 'roots_main' );
+	<% if (css_type == 'none') { %>
+	wp_enqueue_style( 'roots_main', get_template_directory_uri() . '/assets/css/main.min.css', false );
 	<% } %>
 	if ( ! <%= prefix %>_is_dev_mode() ) {
 		$assets_config = get_stylesheet_directory() . '/lib/assets.config.php';
@@ -50,10 +49,9 @@ function <%= prefix %>_scripts() {
 	if (is_single() && comments_open() && get_option( 'thread_comments')) {
 		wp_enqueue_script( 'comment-reply' );
 	}
-
-	// deregister and dequeue roots_scripts
-	wp_dequeue_script( 'roots_scripts' );
-	wp_deregister_script( 'roots_scripts' );
+	<% if('none' == css_type) { %>
+	if ( <%= prefix %>_is_dev_mode() )
+		wp_enqueue_script( 'roots_scripts', get_template_directory_uri() . '/assets/js/scripts.min.js', false, null, true );<% } %>
 	<% if (modernizr) { %>
 	$modernizr_js = ( <%= prefix %>_is_dev_mode() ) ? '/bower_components/modernizr/modernizr.js' : '/assets/dist' . $modernizr_versioned_js;
 	wp_enqueue_script( 'modernizr', get_stylesheet_directory_uri() . $modernizr_js, false, null, false );
