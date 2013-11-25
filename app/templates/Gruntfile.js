@@ -34,7 +34,6 @@ module.exports = function( grunt ) {
 					sourceMappingURL: 'plugins.js.map',
 					sourceMapPrefix: 2,
 					banner: '/*! <%= theme_name %> - Plugins - <%= date_formatted %>\n' +
-						' * <%= pkg.name %>\n' +
 						' * Copyright (c) <%= year %>;' +
 						' * Licensed GPLv2+' +
 						' */\n',
@@ -53,7 +52,6 @@ module.exports = function( grunt ) {
 					sourceMappingURL: 'main.js.map',
 					sourceMapPrefix: 2,
 					banner: '/*! <%= theme_name %> <%= date_formatted %>\n' +
-						' * <%= pkg.name %>\n' +
 						' * Copyright (c) <%= year %>;' +
 						' * Licensed GPLv2+' +
 						' */\n',
@@ -68,8 +66,7 @@ module.exports = function( grunt ) {
 		},
 		test:   {
 			files: ['assets/js/test/**/*.js']
-		},
-		<% if ('Sass' === css_type) { %>
+		},<% if ('Sass' === css_type) { %>
 		compass: {
 			options: {
 				sassDir: 'assets/css/sass',
@@ -94,7 +91,14 @@ module.exports = function( grunt ) {
 					debugInfo: true
 				}
 			}
-		},
+		},<% } else if ('LESS' === css_type) { %>
+		less:   {
+			all: {
+				files: {
+					'assets/css/main.css': 'assets/css/less/main.less'
+				}
+			}
+		},<% } %>
 		autoprefixer: {
 			options: {
 				browsers: ['last 1 version']
@@ -108,19 +112,9 @@ module.exports = function( grunt ) {
 				}]
 			}
 		},
-		<% } else if ('LESS' === css_type) { %>
-		less:   {
-			all: {
-				files: {
-					'assets/css/main.css': 'assets/css/less/main.less'
-				}
-			}
-		},
-		<% } %>
 		cssmin: {
 			options: {
 				banner: '/*! <%= pkg.title %> - v<%= pkg.version %> - <%= date_formatted %>\n' +
-					' * <%= pkg.name %>\n' +
 					' * Copyright (c) <%= year %>;' +
 					' * Licensed GPLv2+' +
 					' */\n'
@@ -154,7 +148,7 @@ module.exports = function( grunt ) {
 				outputConfigDir: 'lib'
 			},
 			dist: {
-				files: [{
+				files: [<% if(modernizr) { %>{
 					assets: [{
 						src: ['assets/js/vendor/modernizr.js'],
 						dest: 'assets/js/vendor/modernizr.js'
@@ -163,7 +157,7 @@ module.exports = function( grunt ) {
 					dest: 'js',
 					type: 'js',
 					ext: '.min.js'
-				}, {
+				},<% } %>{
 					assets: '<%%= uglify.plugins.files %>',
 					key: 'global',
 					dest: 'js',

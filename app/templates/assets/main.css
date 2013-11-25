@@ -7,7 +7,7 @@
  */
 <% if (css_type == 'Sass') { %>
 @import "../../../bower_components/sass-bootstrap/lib/bootstrap";<% } %><% if (css_type == 'LESS') { %>
-@import "../../../bower_components/bootstrap/lib/bootstrap";
+@import "../../../bower_components/bootstrap/less/bootstrap";
 <% } %>
 
 /* Fix admin bar avatar alignment */

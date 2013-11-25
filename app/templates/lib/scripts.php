@@ -19,14 +19,23 @@ function <%= prefix %>_scripts() {
 	wp_dequeue_script( 'roots_main' );
 	<% } %>
 	if ( ! <%= prefix %>_is_dev_mode() ) {
-		$config = include( get_stylesheet_directory() . '/lib/assets.config.php' );
+		$assets_config = get_stylesheet_directory() . '/lib/assets.config.php';
+		if ( false == @include $assets_config ) {
+			wp_die( '<p>Scripts and styles have not been processed by Grunt.</p>
+				<p>Please run the following command from terminal in the theme directory path. <strong>Omit the "$" (dollar sign)</strong>.</p>
+				<p><pre><code>$ grunt</code></pre></p>
+				<p>Run the following command to watch for changes and compile scripts.</p>
+				<p><pre><code>$ grunt dev</code></pre></p>
+				<p>Set the WP_DEV_MODE constant to true in wp-config.php to enqueue unminified javascript.</p>' );
+		}
+		$config = include $assets_config;
 		$main_versioned_css = $config['staticAssets']['global']['css'][0];
 		$modernizr_versioned_js = $config['staticAssets']['global']['js'][0];
-		$plugins_versioned_js = $config['staticAssets']['global']['js'][1];
-		$main_versioned_js = $config['staticAssets']['global']['js'][2];
+		$plugins_versioned_js = $config['staticAssets']['global']['js'][0];
+		$main_versioned_js = $config['staticAssets']['global']['js'][1];
 	}
 
-	$main_css = ( <%= prefix %>_is_dev_mode() ) ? '/assets/css/main.min.css' : '/assets/dist' . $main_versioned_css;
+	$main_css = ( <%= prefix %>_is_dev_mode() ) ? '/assets/css/main.css' : '/assets/dist' . $main_versioned_css;
 	wp_enqueue_style( '<%= prefix %>_main', get_stylesheet_directory_uri() . $main_css, false, null );
 
 	// jQuery is loaded using the same method from HTML5 Boilerplate:
@@ -52,7 +61,7 @@ function <%= prefix %>_scripts() {
 	wp_enqueue_script( 'jquery' );
 
 	$plugins_js = ( <%= prefix %>_is_dev_mode() ) ? '/assets/js/plugins.min.js' : '/assets/dist' . $plugins_versioned_js;
-	$main_js = ( <%= prefix %>_is_dev_mode() ) ? '/assets/js/main.js' : '/assets/dist' . $main_versioned_js;
+	$main_js = ( <%= prefix %>_is_dev_mode() ) ? '/assets/js/source/main.js' : '/assets/dist' . $main_versioned_js;
 	wp_enqueue_script( '<%= prefix %>_plugins', get_stylesheet_directory_uri() . $plugins_js, array( 'jquery' ), null, true );
 	wp_enqueue_script( '<%= prefix %>_main', get_stylesheet_directory_uri() . $main_js, array( 'jquery', '<%= prefix %>_plugins' ), null, true );
 }
