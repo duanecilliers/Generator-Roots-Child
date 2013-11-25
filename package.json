@@ -1,21 +1,25 @@
 {
-  "name": "generator-roots-child",
-  "version": "0.1.3",
-  "description": "A generator for Yeoman",
+  "name": "Generator-Roots-Child",
+  "version": "0.1.4",
+  "description": "Scaffold out a Roots child theme",
   "keywords": [
-    "yeoman-generator"
+    "yeoman-generator",
+    "wordpress",
+    "web",
+    "bootstrap",
+    "modernizr"
   ],
-  "homepage": "https://github.com/duanecilliers/generator-roots-child",
-  "bugs": "https://github.com/duanecilliers/generator-roots-child/issues",
+  "homepage": "https://github.com/duanecilliers/Generator-Roots-Child",
+  "bugs": "https://github.com/duanecilliers/Generator-Roots-Child/issues",
   "author": {
-    "name": "",
-    "email": "",
+    "name": "Duane Cilliers",
+    "email": "duanecilliers@gmail.com",
     "url": "https://github.com/duanecilliers"
   },
   "main": "app/index.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/duanecilliers/generator-roots-child.git"
+    "url": "git://github.com/duanecilliers/Generator-Roots-Child.git"
   },
   "scripts": {
     "test": "mocha"
