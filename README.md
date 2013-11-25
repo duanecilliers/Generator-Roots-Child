@@ -11,7 +11,7 @@ Duane Cilliers ( [@duanecilliers](https://twitter.com/duanecilliers) / [signpost
 
 ## Summary
 
-A [Roots](https://github.com/roots/roots) child theme for WordPress. Dequeues Roots styles and scripts and uses Compass/SCSS with Sass-Bootstrap and Grunt for all tasks.
+A [Roots](https://github.com/roots/roots) child theme generator for WordPress. Choose between Sass Bootsrap, LESS Bootstrap or CSS bootstrap, optionally include Modernizr with leaner builds and Grunt for all tasks.
 
 ## Features
 
@@ -28,9 +28,9 @@ A [Roots](https://github.com/roots/roots) child theme for WordPress. Dequeues Ro
 
 ## Usage
 
-* Clone the repo`git clone https://github.com/duanecilliers/Generator-Roots-Child.git`
-* Run `npm link` to symlink to your ENV PATH. (Publishing as a NPM package soon!)
-* Run `yo roots-child` inside an empty theme directory
+* Make sure you have [yo](https://github.com/yeoman/yo) installed: `npm install -g yo`
+* Install the generator: `npm install -g generator-roots-child`
+* Run `yo roots-child` inside an empty theme directory.
 * Run `grunt` for building and `grunt dev` for watching and compiling
 * Make sure you have [Roots](https://github.com/roots/roots) (the parent theme) installed
 
