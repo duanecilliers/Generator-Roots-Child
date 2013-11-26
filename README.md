@@ -47,6 +47,7 @@ Supports [bower](https://github.com/bower/bower) to install and manage dependenc
 ## TODOs
 
 * Consider deployment config prompts
+* Code a test script with mocha
 
 ## License
 
