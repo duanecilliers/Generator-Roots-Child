@@ -1,4 +1,4 @@
-# Roots child theme generator
+# Roots child theme generator [![Build Status](https://api.travis-ci.org/duanecilliers/Generator-Roots-Child.png?branch=master)](http://travis-ci.org/yeoman/generator-webapp)
 
 Version: 0.1.4
 
