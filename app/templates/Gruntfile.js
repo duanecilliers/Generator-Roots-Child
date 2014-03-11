@@ -214,7 +214,7 @@ module.exports = function( grunt ) {
 			},<% } else if ('LESS' === css_type) { %>
 			less: {
 				files: ['assets/css/less/*.less'],
-				tasks: ['LESS', 'cssmin'],
+				tasks: ['less', 'cssmin'],
 				options: {
 					debounceDelay: 500
 				}
