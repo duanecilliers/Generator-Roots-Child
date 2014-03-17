@@ -30,8 +30,8 @@ function <%= prefix %>_scripts() {
 		$config = include $assets_config;
 		$main_versioned_css = $config['staticAssets']['global']['css'][0];
 		$modernizr_versioned_js = $config['staticAssets']['global']['js'][0];
-		$plugins_versioned_js = $config['staticAssets']['global']['js'][0];
-		$main_versioned_js = $config['staticAssets']['global']['js'][1];
+		$plugins_versioned_js = $config['staticAssets']['global']['js'][1];
+		$main_versioned_js = $config['staticAssets']['global']['js'][2];
 	}
 
 	$main_css = ( <%= prefix %>_is_dev_mode() ) ? '/assets/css/main.css' : '/assets/dist' . $main_versioned_css;
