@@ -184,25 +184,23 @@ module.exports = function( grunt ) {
 		// Generates a custom Modernizr build that includes only the tests you
 		// reference in your app
 		modernizr: {
-			devFile: "bower_components/modernizr/modernizr.js",
-			outputFile: "assets/js/vendor/modernizr.js",
-			excludeFiles: [
-				'assets/js/vendor/*'
-			],
+			dist: {
+				devFile: "bower_components/modernizr/modernizr.js",
+				outputFile: "assets/js/vendor/modernizr.js",
 
-			// By default, source is uglified before saving
-			uglify: true,
+				// By default, source is uglified before saving
+				uglify: true,
 
-			// By default, this task will crawl your project for references to Modernizr tests.
-			// Set to false to disable.
-			parseFiles: false,
+				// By default, this task will crawl your project for references to Modernizr tests.
+				// Set to false to disable.
+				parseFiles: false,
 
-			// When parseFiles = true, this task will crawl all *.js, *.css, *.scss files, except files that are in node_modules/.
-			// You can override this by defining a "files" array below.
-			files: [
-				'assets/js/{,*/}*.js',
-				'assets/css/{,*/}*.scss'
-			]
+				// When parseFiles = true, this task will crawl all *.js, *.css, *.scss files, except files that are in node_modules/.
+				// You can override this by defining a "files" array below.
+				files: {
+					src: ['assets/js/{,*/}*.js', 'assets/css/{,*/}*.scss']
+				}
+			}
 		},<% } %>
 		watch:  {
 			options: {
